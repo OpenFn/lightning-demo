@@ -9,6 +9,6 @@ jobs:
     name: Deploy this project to OpenFn/Lightning
     steps:
       - name: Deploy to Lightning
-        uses: openfn/deploy-action@v0.1.9 
+        uses: zacck/test-action@v0.1.9
         with: 
           secret_input: ${{ secrets.OPENFN_API_KEY }}
