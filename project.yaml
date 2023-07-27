@@ -1,0 +1,45 @@
+name: lightning-demo
+description: to showcase the github to lightning sync
+# credentials:
+# globals:
+workflows:
+  wf1:
+    name: the first workflow
+    jobs:
+      My-First-Job:
+        name: My-First-Job
+        adaptor: '@openfn/language-http@latest'
+        enabled: true
+        # credential:
+        # globals:
+        body: |
+          fn(state => {
+            console.log("Hello world!");
+            return state;
+          });
+          
+      My-Second-Job:
+        name: My-Second-Job
+        adaptor: '@openfn/language-common@latest'
+        enabled: true
+        # credential:
+        # globals:
+        body: |
+          fn(state => {
+            console.log("Goodbye world!");
+            return state;
+          });
+          
+    triggers:
+      cron:
+        type: cron
+        cron_expression: '7 23 * * *'
+    edges:
+      cron->My-First-Job:
+        source_trigger: cron
+        target_job: My-First-Job
+        condition: always
+      My-First-Job->My-Second-Job:
+        source_job: My-First-Job
+        target_job: My-Second-Job
+        condition: on_job_success
