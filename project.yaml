@@ -1,5 +1,5 @@
 name: lightning-demo
-description: to showcase the github to lightning sync
+description: Showcasing the Github to Lightning deploy action
 # credentials:
 # globals:
 workflows:
